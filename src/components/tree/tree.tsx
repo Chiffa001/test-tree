@@ -5,7 +5,7 @@ import { useTreeQuery } from "@/api/queries";
 import { type TreeItem } from "@/types/tree";
 import { TreeItemLabel } from "../tree-item-label";
 import { ActionModal } from "../action-modal";
-import { useModalState } from "@/store/modal";
+import { useModalState } from "@/store";
 
 const renderTree = ({ id, name, children }: TreeItem, isRoot = false) => (
     <MaterialTreeItem

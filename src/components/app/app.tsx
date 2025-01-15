@@ -3,6 +3,7 @@ import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
 import { queryClient } from "@/api/query-client";
 import { Tree } from "../tree";
+import { ErrorPlate } from "../error-plate";
 
 const darkTheme = createTheme({
     palette: {
@@ -15,6 +16,7 @@ export const App = () => (
         <QueryClientProvider client={queryClient}>
             <CssBaseline />
             <Tree />
+            <ErrorPlate />
         </QueryClientProvider>
     </ThemeProvider>
 );

@@ -1,17 +1,19 @@
 import { useModifyTreeItemMutation } from "@/api/queries";
-import { useModalState } from "@/store/modal";
+import { useErrorState, useModalState } from "@/store";
 import { ActionType } from "@/types/action";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { AxiosError } from "axios";
 import { useState, type FC, ChangeEventHandler } from "react";
 
 export const ActionModal: FC = () => {
     const { actionType, activeName, activeId, closeModal } = useModalState();
+    const { addError } = useErrorState();
     const [name, setName] = useState(activeName);
     const { mutateAsync, isPending } = useModifyTreeItemMutation();
 
@@ -22,6 +24,11 @@ export const ActionModal: FC = () => {
                 name,
                 nodeId: activeId as number,
             });
+        } catch (e) {
+            addError(
+                (e as AxiosError<{ data?: { message: string } }>).response?.data
+                    ?.data?.message ?? "Unexpected error"
+            );
         } finally {
             closeModal();
         }

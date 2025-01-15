@@ -1,13 +1,12 @@
-import { type MouseEvent } from "react";
+import { type MouseEvent, type FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { type FC } from "react";
-import type { TreeItem } from "@/types/tree";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/ModeEditOutline";
-import { IconButton } from "@mui/material";
-import { useModalState } from "@/store/modal";
+import IconButton from "@mui/material/IconButton";
+import type { TreeItem } from "@/types/tree";
+import { useModalState } from "@/store";
 import { ActionType } from "@/types/action";
 
 type Props = {
