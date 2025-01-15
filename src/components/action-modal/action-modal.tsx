@@ -39,11 +39,17 @@ export const ActionModal: FC = () => {
     };
 
     return (
-        <Dialog open onClose={closeModal}>
+        <Dialog open onClose={closeModal} fullWidth>
             <DialogTitle>{actionType}</DialogTitle>
-            <DialogContent style={{ paddingTop: 8, minWidth: "320px" }}>
+            <DialogContent style={{ paddingTop: 8 }}>
                 {actionType === ActionType.DELETE ? (
-                    <Typography>Do you want to delete {name}?</Typography>
+                    <Typography
+                        maxWidth="100%"
+                        overflow="hidden"
+                        textOverflow="ellipsis"
+                    >
+                        Do you want to delete {name}?
+                    </Typography>
                 ) : (
                     <TextField
                         id="outlined"
@@ -58,7 +64,12 @@ export const ActionModal: FC = () => {
                 <Button autoFocus onClick={closeModal}>
                     Cancel
                 </Button>
-                <Button onClick={submitHandler} autoFocus loading={isPending}>
+                <Button
+                    onClick={submitHandler}
+                    autoFocus
+                    loading={isPending}
+                    disabled={!name.trim()}
+                >
                     {actionType}
                 </Button>
             </DialogActions>

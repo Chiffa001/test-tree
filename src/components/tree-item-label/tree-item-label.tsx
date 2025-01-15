@@ -27,7 +27,13 @@ export const TreeItemLabel: FC<Props> = ({ name, id, canModify = true }) => {
 
     return (
         <Box display="flex" flexDirection="row" alignItems="center" gap={0.3}>
-            <Typography>{name}</Typography>
+            <Typography
+                maxWidth="100vw"
+                overflow="hidden"
+                textOverflow="ellipsis"
+            >
+                {name}
+            </Typography>
             <IconButton onClick={clickHandlerCreator(ActionType.ADD)}>
                 <AddIcon />
             </IconButton>
